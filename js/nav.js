@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", function() {
   // Activate sidebar nav
-  var elems = document.querySelectorAll(".sidenav");
+  const elems = document.querySelectorAll(".sidenav");
   M.Sidenav.init(elems);
   loadNav();
 
@@ -66,7 +66,7 @@ document.addEventListener("DOMContentLoaded", function() {
         }
       }
     };
-    xhttp.open("GET", "pages/" + page + ".html", true);
+    xhttp.open("GET", `pages/${page}.html` + ".html", true);
     xhttp.send();
   }
 

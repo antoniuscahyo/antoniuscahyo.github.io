@@ -11,13 +11,21 @@ workbox.precaching.precacheAndRoute([
   { url: '/manifest.json', revision: '1' },
 ]);
 
+workbox.precaching.precacheAndRoute([
+  { url: '/pages/jadwalmain.html', revision: '1' },
+  { url: '/pages/tim.html', revision: '1' },
+  { url: '/pages/timfavorit.html', revision: '1' },
+  ], {
+  ignoreUrlParametersMatching: [/.*/]
+});
+
+
 workbox.routing.registerRoute(
   /.*\.html/,
   workbox.strategies.networkFirst({
     cacheName: 'workbox:html',
   })
 );
-
 
 workbox.routing.registerRoute(
   new RegExp('.*\.js'),
@@ -54,6 +62,13 @@ workbox.routing.registerRoute(
     cacheName: 'workbox:api'
   }),
   'GET'
+);
+
+workbox.routing.registerRoute(
+  /.*(?:googleapis|gstatic)\.com/,
+  workbox.strategies.staleWhileRevalidate({
+    cacheName: 'google-fonts-stylesheets',
+  })
 );
 
 // PUSH NOTIFICATION
